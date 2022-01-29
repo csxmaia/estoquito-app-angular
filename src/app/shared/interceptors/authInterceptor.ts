@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
 // import User from "../models/user";
 import jwt_decode from "jwt-decode";
 
-public interface User {
+interface User {
 
 }
 const environment: any = 123;
@@ -43,21 +43,6 @@ export class AuthService {
 
   checkIsAuthenticated() {
     return this.getToken() !== null
-  }
-
-  getUserByToken() {
-    let token = this.getToken();
-    var decoded: any;
-    if (token != null) {
-      decoded = jwt_decode(token);
-      const user: User = new User();
-      user.id = decoded.id;
-      user.username = decoded.username;
-      user.email = decoded.email;
-      user.name = decoded.name;
-      return user;
-    }
-    return null
   }
 
 }
