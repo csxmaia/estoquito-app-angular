@@ -1,48 +1,37 @@
-import { Injectable } from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
-// import {environment} from "../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-// import User from "../models/user";
-import jwt_decode from "jwt-decode";
+import {Injectable} from "@angular/core";
+import {AuthService} from "../../services/auth.service";
 
-interface User {
+
+@Injectable()
+export class AuthInterceptor implements HttpInterceptor {
+
+  constructor(private authService: AuthService) { }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let newReq = req;
+
+    const jwtToken = this.authService.getToken();
+    if (jwtToken) {
+      newReq = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${jwtToken}`
+        }
+      });
+    }
+
+    return next.handle(newReq)
+  }
+
 
 }
-const environment: any = 123;
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthService {
-
-  private path = "/v1/auth";
-  private token_name = "PC_Token";
-
-  constructor(private http: HttpClient) { }
-
-  login(user: User): Observable<any> {
-    return this.http.post(`${environment.api}${this.path}/login`, user);
-  }
-
-  signUp(user: User): Observable<any> {
-    return this.http.post(`${environment.api}${this.path}/signUp`, user);
-  }
-
-  setToken(jwtToken: string) {
-    localStorage.setItem(this.token_name, jwtToken);
-  }
-
-  getToken() {
-    return localStorage.getItem(this.token_name);
-  }
-
-  logout() {
-    localStorage.removeItem(this.token_name);
-    window.location.href = "/login";
-  }
-
-  checkIsAuthenticated() {
-    return this.getToken() !== null
-  }
-
-}
+// const header = {};
+// header['Authorization'] = jwtToken;
+// const variablesHeaders = ['Content-Type', 'Accept'];
+// for (let i = 0; i < variablesHeaders.length; i++) {
+//   const value = req.headers.get(variablesHeaders[i]);
+//   if (value) {
+//     header[variablesHeaders[i]] = value;
+//   }

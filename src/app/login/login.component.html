@@ -6,12 +6,12 @@
 
     <div class="d-flex flex-column gap-2">
       <div>
-        <label for="username">Usuario</label>
-        <input [(ngModel)]="usuario.usuario" type="text" class="form-control" aria-label="Usuario" id="usuario">
+        <label for="usuario">Usuario</label>
+        <input [(ngModel)]="usuario.usuario" type="text" class="form-control" aria-label="Usuario" id="usuario"/>
       </div>
       <div>
-        <label for="password">Senha</label>
-        <input [(ngModel)]="usuario.senha" type="text" class="form-control" aria-label="Senha" id="senha">
+        <label for="senha">Senha</label>
+        <input [(ngModel)]="usuario.senha" type="password" class="form-control" aria-label="Senha" id="senha"/>
       </div>
       <div class="d-flex">
         <button class="w-100" (click)="submit()">Login</button>
