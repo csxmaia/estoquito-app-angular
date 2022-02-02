@@ -1,3 +1,24 @@
-<div class="container-fluid root" style="min-height: 100vh">
-  <router-outlet></router-outlet>
+<div class="root" style="min-height: 100vh">
+  <mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav opened mode="side">
+      <app-sidenav
+      ></app-sidenav>
+<!--        (sidenavToggle)="toggleSideNav(sidenav)"-->
+    </mat-sidenav>
+
+    <mat-sidenav-content style="margin-left: 270px !important; min-height: 100vh !important;">
+      <div class="root-app">
+        <app-navbar
+        ></app-navbar>
+<!--          (sidenavToggle)="toggleSideNav(sidenav)"-->
+        <div class="container-app">
+          <div class="content-app m-2">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
 </div>

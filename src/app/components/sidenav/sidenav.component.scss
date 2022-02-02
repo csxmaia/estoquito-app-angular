@@ -1,0 +1,11 @@
+.items {
+  display: flex;
+  row-gap: 8px;
+  margin-left: 12px;
+  div {
+    cursor: pointer;
+    padding: 6px;
+    min-width: 200px;
+    background-color: rgba(0, 0, 255, 0.16);
+  }
+}
