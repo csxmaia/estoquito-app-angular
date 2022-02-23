@@ -1,0 +1,66 @@
+<app-cadastro title="Cadastrar Produto">
+  <div content>
+    <div class="row">
+      <div class="col-lg-4">
+        <label for="ean">EAN (Código de barras)</label>
+        <input [(ngModel)]="produto.ean" #ean type="text" id="ean" class="form-control" (keydown.enter)="handleEnterOnEan()"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="nome">Nome do produto</label>
+        <input [(ngModel)]="produto.nome" type="text" id="nome" class="form-control" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <label for="tipo-embalagem">Tipo embalagem</label>
+        <select id="tipo-embalagem" [(ngModel)]="produto.tipoEmbalagem" class="form-select">
+          <option [ngValue]="'UNIDADE'" title="Unidade" >Unidade</option>
+          <option [ngValue]="'CAIXA'" title="Caixa">Caixa</option>
+          <option [ngValue]="'GRAMA'" title="Grama">Grama</option>
+          <option [ngValue]="'QUILO'" title="Quilo">Quilo</option>
+        </select>
+      </div>
+      <div class="col-lg-2">
+        <label for="marca">Marca</label>
+        <select id="marca" [(ngModel)]="produto.marca" class="form-select" [compareWith]="compareFn">
+          <option selected disabled [value]="PRODUTO_DEFAULT_VALUES_PUBLIC.marca">Todas as marcas</option>
+          <option *ngFor="let marca of marcaList" [ngValue]="marca" [title]="marca.nome | titlecase //noinspection UnresolvedFunction">
+            {{marca.nome | titlecase //noinspection UnresolvedFunction }}
+          </option>
+        </select>
+      </div>
+      <div class="col-lg-2">
+        <label for="categoria">Categoria</label>
+        <select id="categoria" [(ngModel)]="produto.categoria" class="form-select" [compareWith]="compareFn">
+          <option selected disabled [value]="PRODUTO_DEFAULT_VALUES_PUBLIC.categoria">Todas as categorias</option>
+          <option *ngFor="let categoria of categoriaList" [ngValue]="categoria" [title]="categoria.nome | titlecase //noinspection UnresolvedFunction">
+            {{categoria.nome | titlecase //noinspection UnresolvedFunction }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2">
+        <label for="quantidade-estoque">Quantidade atual (Estoque)</label>
+        <input [(ngModel)]="produto.quantidadeEstoque" type="text" id="quantidade-estoque" mask="separator.3" thousandSeparator="." class="form-control" />
+      </div>
+      <div class="col-lg-2">
+        <label for="quantidade-minima">Quantidade minima (Estoque)</label>
+        <input [(ngModel)]="produto.quantidadeMinima" type="text" id="quantidade-minima" mask="separator.3" thousandSeparator="." class="form-control" />
+      </div>
+      <div class="col-lg-2">
+        <label for="preco-venda">Preço de venda</label>
+        <input [(ngModel)]="produto.valorVenda" type="text" id="preco-venda" prefix="R$ " mask="separator.2" thousandSeparator="." class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div footer>
+    <button type="button" class="btn btn-outline-primary" (click)="handleCancel()">Voltar</button>
+    <div class="d-flex gap-3">
+      <button type="button" class="btn btn-primary" (click)="handleSubmit(true)">Salvar{{!isEdit? " e voltar": ""}}</button>
+      <button *ngIf="!isEdit" type="button" class="btn btn-primary" (click)="handleSubmit()">Salvar</button>
+    </div>
+  </div>
+</app-cadastro>

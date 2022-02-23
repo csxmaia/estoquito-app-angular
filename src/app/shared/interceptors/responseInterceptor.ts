@@ -6,36 +6,22 @@ import {
   HttpRequest,
   HttpResponse
 } from "@angular/common/http";
-import {Observable, of} from "rxjs";
+import {Observable, throwError} from "rxjs";
 import {catchError, tap} from "rxjs/operators";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Injectable} from "@angular/core";
 // import snackBarConfig from "../../../util/snackBarConfig";
-// import {TranslateService} from "@ngx-translate/core";
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
   constructor(private _snackBar: MatSnackBar){ }
 
   snackBarOpen(message: string, status: string) {
-    this._snackBar.open(message);
-    // let messageToTranslateSplit = message.split(';param:');
-    // if(messageToTranslateSplit[1] !== undefined) {
-    //   let messageToTranslate = messageToTranslateSplit[0];
-    //   let paramToMessage = messageToTranslateSplit[1];
-    //   this.translateService.get(messageToTranslate, {param: paramToMessage}).subscribe((translatedOrNot: string) => {
-    //     return this._snackBar.open(translatedOrNot, "✖️", snackBarConfig(status));
-    //   });
-    // } else {
-    //   this.translateService.get(message).subscribe((translatedOrNot: string) => {
-    //     return this._snackBar.open(translatedOrNot, "✖️", snackBarConfig(status));
-    //   });
-    }
+    this._snackBar.open(message, "✖️");
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let newReq = req;
-
-    return next.handle(newReq).pipe(
+    return next.handle(req).pipe(
       tap(response => {
         if (response instanceof HttpResponse) {
           if(response.body && response.body.success && response.body.message) {
@@ -55,7 +41,7 @@ export class ResponseInterceptor implements HttpInterceptor {
             this.snackBarOpen("Erro inesperado", "mat-error")
           }
         }
-        return of(err);
+        return throwError(err);
       }));
   }
 }

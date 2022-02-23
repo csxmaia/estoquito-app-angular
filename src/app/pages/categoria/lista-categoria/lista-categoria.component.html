@@ -1,0 +1,18 @@
+<app-lista title="Categorias" addUrl="categoria/cadastrar">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th>Nome</th>
+      <th>Descrição</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let categoria of categorias">
+      <td><strong>#{{categoria.id}}</strong></td>
+      <td>{{categoria.nome}}</td>
+      <td>{{categoria.descricao}}</td>
+    </tr>
+    </tbody>
+  </table>
+</app-lista>

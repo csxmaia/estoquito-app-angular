@@ -1,0 +1,66 @@
+<div class="container mt-4 d-flex flex-column gap-3">
+  <div class="row">
+    <div class="col-6">
+
+      <div class="col-lg-9">
+        <label for="codigo">Código</label>
+        <input [(ngModel)]="produto.codigo" (keydown.enter)="addProduto()"  type="text" id="codigo" class="form-control"/>
+        <label for="descricao">Descricao</label>
+        <input [(ngModel)]="produto.descricao" (keydown.enter)="addProduto()" type="text" id="descricao" class="form-control"/>
+      </div>
+
+      <div class="col-lg-9">
+        <div class="row">
+          <div class="col-lg-4">
+            <label for="quantidade">Quantidade</label>
+            <input [(ngModel)]="produto.quantidade" (keydown.enter)="addProduto()" type="text" id="quantidade" class="form-control" />
+          </div>
+
+          <div class="col-lg-4 text-black-50">
+            <label for="valor-unitario">Valor unitário</label>
+            <input type="text" disabled id="valor-unitario" class="form-control" />
+          </div>
+
+          <div class="col-lg-4 text-black-50">
+            <label for="total">Total</label>
+            <input type="text" disabled id="total" class="form-control" />
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-9 mt-3 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="addProduto()">Adicionar Produto</button>
+      </div>
+
+    </div>
+    <div class="col-6 border p-3">
+      <h1>Produtos</h1>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">Código</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let produto of produtoList">
+          <td>{{produto.codigo}}</td>
+          <td>{{produto.descricao}}</td>
+          <td>{{produto.quantidade}}</td>
+          <td>{{produto.valor_total}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <div>
+      <h1 class="m-0">SubTotal: <strong>R$ 11,50</strong></h1>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary">Finalizar venda</button>
+  </div>
+</div>

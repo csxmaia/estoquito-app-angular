@@ -1,0 +1,31 @@
+<app-lista title="Produtos" addUrl="produto/cadastrar">
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">EAN (Código)</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Quantidade em estoque</th>
+      <th scope="col">Embalagem</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Preço de venda</th>
+      <th class="text-center">Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let produto of produtos">
+      <td>{{produto.ean}}</td>
+      <td>{{produto.nome}}</td>
+      <td>{{(produto.quantidadeEstoque! | number: '1.3-3')!.replace(',000','')}}</td>
+      <td>{{produto.tipoEmbalagem | titlecase}}</td>
+      <td>{{produto.marca!.nome | titlecase}}</td>
+      <td>{{produto.categoria!.nome}}</td>
+      <td>{{produto.valorVenda | currency: 'BRL'}}</td>
+      <td class="d-flex justify-content-center gap-1">
+        <mat-icon class="text-warning pointer-event" role="button" (click)="handleEdit(produto)">edit</mat-icon>
+        <mat-icon class="text-danger" role="button">delete</mat-icon>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</app-lista>

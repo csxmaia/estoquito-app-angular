@@ -3,11 +3,19 @@
     <h2 class="fw-bold m-0">Estoquito</h2>
   </div>
   <div class="items d-flex flex-column">
-    <div (click)="handleRedirect('categoria/lista')">Categoria</div>
-    <div (click)="handleRedirect('cliente/lista')">Cliente</div>
-    <div (click)="handleRedirect('fornecedor/lista')">Fornecedor</div>
-    <div (click)="handleRedirect('funcionario/lista')">Funcionario</div>
-    <div (click)="handleRedirect('material/lista')">Material</div>
-    <div (click)="handleRedirect('produto/lista')">Entrada produto</div>
+    <span class="mt-2">Operacional</span>
+    <div class="bg-primary text-white item" (click)="handleRedirect('baixa-estoque')">Baixa estoque</div>
+    <div class="bg-primary text-white item" (click)="handleRedirect('venda')">Venda</div>
+    <span class="mt-2">Administrativo</span>
+    <div class="bg-primary text-white item" (click)="handleRedirect('categoria/lista')">Categoria</div>
+    <div class="bg-primary text-white item" (click)="handleRedirect('marca/lista')">Marca</div>
+    <div class="bg-primary text-white item" (click)="handleRedirect('produto/lista')">Produto</div>
+    <div class="bg-primary text-white item item-disabled" (click)="handleRedirect('fornecedor/lista')">Fornecedor</div>
+    <div class="bg-primary text-white item item-disabled" (click)="handleRedirect('cliente/lista')">Cliente</div>
+    <div class="bg-primary text-white item item-disabled" (click)="handleRedirect('funcionario/lista')">Funcionario</div>
+    <div class="bg-primary text-white item item-disabled" (click)="handleRedirect('produto/entrada')">Entrada produto</div>
+    <span class="mt-2">Relatórios</span>
+    <div class="bg-primary text-white item item-disabled" (click)="handleRedirect('produto/lista')">Vendas</div>
+    <div class="bg-primary text-white item item-disabled" (click)="handleRedirect('produto/lista')">Estoque</div>
   </div>
 </div>

@@ -24,14 +24,4 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(newReq)
   }
 
-
 }
-
-// const header = {};
-// header['Authorization'] = jwtToken;
-// const variablesHeaders = ['Content-Type', 'Accept'];
-// for (let i = 0; i < variablesHeaders.length; i++) {
-//   const value = req.headers.get(variablesHeaders[i]);
-//   if (value) {
-//     header[variablesHeaders[i]] = value;
-//   }

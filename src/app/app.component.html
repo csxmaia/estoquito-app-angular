@@ -1,13 +1,13 @@
 <div class="root" style="min-height: 100vh">
   <mat-sidenav-container class="sidenav-container">
 
-    <mat-sidenav opened mode="side">
+    <mat-sidenav *ngIf="fullPageList.indexOf(activeRoute) === -1" opened mode="side">
       <app-sidenav
       ></app-sidenav>
 <!--        (sidenavToggle)="toggleSideNav(sidenav)"-->
     </mat-sidenav>
 
-    <mat-sidenav-content style="margin-left: 270px !important; min-height: 100vh !important;">
+    <mat-sidenav-content [ngStyle]="{'margin-left':(fullPageList.indexOf(activeRoute) === -1) ? '270px !important' : '0px'}" style="min-height: 100vh !important">
       <div class="root-app">
         <app-navbar
         ></app-navbar>

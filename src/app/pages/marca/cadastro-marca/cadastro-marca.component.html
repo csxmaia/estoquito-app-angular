@@ -1,0 +1,23 @@
+<app-cadastro title="Cadastrar Marca">
+  <div content>
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="nome">Nome</label>
+        <input [(ngModel)]="marca.nome" type="text" id="nome" class="form-control" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <label for="descricao">Descricao</label>
+        <textarea [(ngModel)]="marca.descricao" rows="3" id="descricao" class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+  <div footer>
+    <button type="button" class="btn btn-outline-primary" (click)="handleCancel()">Cancelar</button>
+    <div class="d-flex gap-3">
+      <button  type="button" class="btn btn-primary" (click)="handleSubmit(true)">Salvar e voltar</button>
+      <button  type="button" class="btn btn-primary" (click)="handleSubmit()">Salvar</button>
+    </div>
+  </div>
+</app-cadastro>

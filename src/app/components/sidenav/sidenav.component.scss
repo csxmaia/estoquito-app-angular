@@ -1,11 +1,14 @@
 .items {
   display: flex;
-  row-gap: 8px;
+  row-gap: 6px;
   margin-left: 12px;
-  div {
+  > div {
     cursor: pointer;
     padding: 6px;
     min-width: 200px;
-    background-color: rgba(0, 0, 255, 0.16);
+  }
+  .item-disabled {
+    background-color: #C4C4C4 !important;
+    cursor: unset;
   }
 }
